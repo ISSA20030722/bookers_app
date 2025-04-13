@@ -1,5 +1,7 @@
 class BooksController < ApplicationController
   def index
+    # 投稿一覧表示をするとき、allで保存されたコード一覧を取得できるので、indexでidがつか
+    @books = Book.all
     @book = Book.new
     # .all.orderでIDの若い順に
     @books = Book.all.order(:id)
