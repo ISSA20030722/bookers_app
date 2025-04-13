@@ -12,12 +12,18 @@
 
 <h2>New book</h2>
   <%# テーブル本体部分を書いていく %>
-  <tbody>
+  <%# model: @bookとすることで、送信されるパラメータはparams[:book]として渡される。 %>
     <%= form_with model: @book, url:'/books' do |f| %>
-    <h4>本の名前</h4>
-    <%= f.text_field :本の名前 %>
-    <h4>感想</h4>
-    <%= f.text_area :感想 %>
+    <div>
+    <h4>本のタイトル</h4>
+    <%# カラム名が本のタイトル %>
+    <%= f.text_field :本のタイトル %>
+    </div>
+    
+    <%# ラベルで書いてみる、:のあとはカラムを入れる %>
+    <div>
+    <%= f.label :body, "感想" %><br>
+    <%= f.text_area :body %>
+    </div>
     <%= f.submit 'Create Book'%>
     <% end %>
-  </tbody>
