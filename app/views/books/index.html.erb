@@ -1,0 +1,23 @@
+<h1>Books</h1>
+  <%# theadはテーブルのヘッダー行をまとめる要素 %>
+  <thead>
+    <tr>
+      <%# thは列見出し %>
+      <th>本の名前</th>
+      <th>感想</th>
+      <th>colspan="3"</th>
+    </tr>
+  </thead>
+
+
+<h2>New book</h2>
+  <%# テーブル本体部分を書いていく %>
+  <tbody>
+    <%= form_with model: @book, url:'/books' do |f| %>
+    <h4>本の名前</h4>
+    <%= f.text_field :本の名前 %>
+    <h4>感想</h4>
+    <%= f.text_area :感想 %>
+    <%= f.submit 'Create Book'%>
+    <% end %>
+  </tbody>
