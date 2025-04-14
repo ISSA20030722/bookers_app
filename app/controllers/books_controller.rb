@@ -1,8 +1,9 @@
 class BooksController < ApplicationController
   def index
-    # 投稿一覧表示をするとき、allで保存されたコード一覧を取得できるので、indexでidがつか
-    @books = Book.all
+    # 新規投稿用の空のBookオブジェクトを作成する
     @book = Book.new
+    # 投稿一覧表示をするとき、allで保存されたコード一覧を取得できるので、indexでidが使える
+    @books = Book.all
     # .all.orderでIDの若い順に
     @books = Book.all.order(:id)
   end
@@ -20,11 +21,12 @@ class BooksController < ApplicationController
       # flash.nowは現在のアクションが実行完了したらメッセージを削除する
       flash.now[:alert] = "error!!"
       @books = Book.all.order(:id)
-      render :new
+      render :index
     end
   end
 
   def show
+    @book = Book.find(params[:id])
   end
 
   def new
@@ -33,7 +35,31 @@ class BooksController < ApplicationController
   end
 
   def edit
+    @book = Book.find(params[:id])
   end
+
+  def update
+    # アクションの対応ビュー、ここではedit.htmlにアクセスするために@を付ける。
+    @book = Book.find(params[:id])
+    if @book.update(book_params)
+      flash[:notice]="Book was successfully updated."
+      redirect_to book_path(@book)
+    else
+      flash.now[:alert] = "error!!"
+      render :edit
+    end
+  end
+
+  def destroy
+    @book = Book.find(params[:id])
+    if @book.destroy
+      flash[:notice] = "Book was successfully deleted."
+    else
+      flash[:alert] = "Error: Book could not be deleted."
+    end
+    redirect_to books_path 
+  end
+    
 
   # ストロングパラメーター
   private

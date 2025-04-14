@@ -1,2 +1,18 @@
-<h1>Books#edit</h1>
-<p>Find me in app/views/books/edit.html.erb</p>
+<h1>Editing Book</h1>
+<%= form_with model: @book do |f| %>
+  <div>
+    <%# text_fieldのラベルとして書いてみる %>
+    <%= f.label :title, "本のタイトル" %><br>
+    <%= f.text_field :title %>
+  </div>
+  <div>
+    <%= f.label :body, "感想" %><br>
+    <%= f.text_area :body %>
+  </div>
+  <div>
+    <%= f.submit "Update Book" %>
+  </div>
+<% end %>
+<%= link_to "Back", books_path %>
+<%# ここで@bookはbooks_controllerのeditアクションで定義したインスタンス変数 %>
+<%= link_to "show", book_path(@book) %>
