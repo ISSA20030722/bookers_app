@@ -1,8 +1,4 @@
 Rails.application.routes.draw do
-  get 'books/index'
-  get 'books/show'
-  get 'books/new'
-  get 'books/edit'
   # トップ画面をhomes#topに設定する
   root 'homes#top'
   resources :books

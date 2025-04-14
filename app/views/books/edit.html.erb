@@ -13,6 +13,6 @@
     <%= f.submit "Update Book" %>
   </div>
 <% end %>
-<%= link_to "Back", books_path %>
 <%# ここで@bookはbooks_controllerのeditアクションで定義したインスタンス変数 %>
 <%= link_to "show", book_path(@book) %>
+<%= link_to "Back", books_path %>

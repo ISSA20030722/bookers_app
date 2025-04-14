@@ -14,9 +14,9 @@ class BooksController < ApplicationController
     @book=Book.new(book_params)
     # 3. データをデータベースに保存するためのsaveメソッドを実行する
     if @book.save
-    # 4. フラッシュメッセージを定義し、詳細画面へリダイレクトする
-    flash[:notice] = "Successfully created book."
-    redirect_to books_path
+    # 4. フラッシュメッセージを定義し、詳細画面へリダイレクトする,book_path(@book)
+    flash[:notice] = "successfully created book."
+    redirect_to book_path(@book)
     else
       # flash.nowは現在のアクションが実行完了したらメッセージを削除する
       flash.now[:alert] = "error!!"
